@@ -1,0 +1,42 @@
+<div id="loginController" class="login-box-body" ng-controller="loginController">
+            <div ng-init="get_setting_login()">              
+    <p class="login-box-msg">{{translation.SIGN_IN}}</p>
+    <div class="alert alert-{{login_status}} alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>{{login_message}}</div>
+    <form role="form">
+        <div class="form-group has-feedback">
+            <input type="text" id="wp_user_email_name" placeholder="{{translation.USERNAME_OR_EMAIL}}" required class="form-control" ng-model="wp_user_email_name" value="{{wp_user_email_name}}">                              
+            <span ng-hide="wp_user_appearance_icon" class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+            <input type="password" id="wp_user_password" required class="form-control" placeholder="{{translation.PASSWORD}}" ng-model="wp_user_password" value="{{wp_user_password}}">
+            <span ng-hide="wp_user_appearance_icon" class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <!--<div class="checkbox icheck">
+                    <label class="">
+                        <div class="icheckbox_square-blue" aria-checked="false" aria-disabled="false" style="position: relative;">
+                            <input type="checkbox" ng-model="wp_user_remember" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div> Remember Me
+                    </label>
+                </div>-->
+            </div>
+            <!-- /.col -->
+            <div class="col-xs-4">
+                <input type="submit" class="btn btn-primary" name="wpuser_login"  value="{{translation.SIGN_IN}}" ng-click="wpuser_login()">	
+
+            </div>
+            <!-- /.col -->
+        </div>
+    </form>
+
+    <!--<div class="social-auth-links text-center">
+        <p>- OR -</p>
+        <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
+            Facebook</a>        
+    </div>-->
+    <!-- /.social-auth-links -->
+
+    <a href="#forgotController">{{translation.FORGOT_PASSWORD}}</a><br>
+    <a ng-hide="wp_user_disable_signup" href="#registerController" class="text-center">{{translation.SIGN_UP}}</a>
+</div>
+</div>

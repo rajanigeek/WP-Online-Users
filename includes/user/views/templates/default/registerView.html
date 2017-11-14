@@ -1,0 +1,55 @@
+<div class="register-box-body" ng-controller="registerController">
+     <div ng-init="get_setting_register()">
+    <p class="login-box-msg">{{translation.SIGN_UP}}</p>
+    <div class="alert alert-{{register_status}} alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>{{register_message}}</div>
+    <form role="form">
+      <div class="form-group has-feedback">
+         <input type="text" id="wp_user_email_name" placeholder="{{translation.USERNAME}}" required class="form-control" ng-model="wp_user_email_name">                              
+        <span ng-hide="wp_user_appearance_icon" class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="text" id="wp_user_email" placeholder="{{translation.EMAIL}}" required class="form-control" ng-model="wp_user_email" >  
+        <span ng-hide="wp_user_appearance_icon" class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" id="wp_user_password" placeholder="{{translation.PASSWORD}}" required class="form-control" ng-model="wp_user_password" >  
+        <span ng-hide="wp_user_appearance_icon" class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" id="wp_user_re_password" placeholder="{{translation.RETYPE_PASSWORD}}" required class="form-control" ng-model="wp_user_re_password">  
+        <span ng-hide="wp_user_appearance_icon" class="glyphicon glyphicon-log-in form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">            
+         <div ng-hide="!wp_user_tern_and_condition">            
+               <input id="wp_user_term_condition" type="checkbox" ng-checked="wp_user_term_condition == 1" ng-model="wp_user_term_condition">
+               {{translation.I_AGREE_TO_THE_TERMS}}..
+               <div style="max-height:100px;overflow-y: scroll;border:1px solid">{{wp_user_show_term_data}}</div>                
+         </div><br>
+        </div>
+          </div>
+          
+          <div ng-hide="!wp_user_security_reCaptcha_enable" class="row">
+        <div class="col-xs-12">  
+   <div vc-recaptcha key="publicKey"></div>
+    </div>
+        </div>
+        <div class="row">
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <input type="submit" class="btn btn-primary btn-block btn-flat" name="wpuser_register"  value="{{translation.SIGN_UP}}" ng-click="wpuser_register()">	
+
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+   <!-- <div class="social-auth-links text-center">
+      <p>- OR -</p>
+      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
+        Facebook</a>      
+    </div>-->
+
+    <a href="#loginController" class="text-center">{{translation.SIGN_IN}}</a>
+     </div>
+  </div>

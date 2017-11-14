@@ -1,0 +1,725 @@
+<div ng-controller="settingController">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="/settingController#tab_1" aria-expanded="true">{{translation.GENERAL}}</a></li>
+                    <li class=""><a data-toggle="tab" href="/settingController#tab_2" aria-expanded="false">{{translation.PAGE_SETUP}}</a></li>
+                    <li class=""><a data-toggle="tab" href="/settingController#tab_security" aria-expanded="false">{{translation.SECURITY}}</a></li>
+                    <li class=""><a data-toggle="tab" href="/settingController#tab_3" aria-expanded="false">{{translation.EMAIL_NOTIFICATION}}</a></li>
+                    <li class=""><a data-toggle="tab" href="/settingController#tab_login_log" aria-expanded="false">Login Log</a></li>        
+                    <li class=""><a data-toggle="tab" href="/settingController#import_export" aria-expanded="false">Import/Export</a></li>                       
+                    <li class=""><a data-toggle="tab" href="/settingController#tab_help" aria-expanded="false">{{translation.HELP}}</a></li>  
+                    <li class=""><a data-toggle="tab" href="/settingController#tab_cust" aria-expanded="false">PAID CUSTOMIZATION</a></li>  
+                    <li class="pull-right"><a class="text-muted" href="#"><i class="fa fa-gear"></i></a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="tab_1" class="tab-pane active">
+                        <div class="box box-default box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">{{translation.GENERAL}}</h3>                                
+                                <div class="box-tools">
+                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div ng-init="get_setting_general()" class="box-body no-padding">
+                                <form role="form">
+                                    <div class="box-body">                   
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label for="wp_user_disable_signup">{{translation.DISABLE_SIGN_UP_FORM}}</label></div>
+                                            <div class="col-md-9"> <input id="wp_user_disable_signup" type="checkbox"   ng-checked="wp_user_disable_signup == 1" ng-model="wp_user_disable_signup">
+                                                {{translation.DISABLE_USER_TO_REGISTER_NEW_ACCOUNT_FORM_FRONT_END}} 
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-3"><label for="wp_user_disable_admin_bar">{{translation.DISABLE_ADMIN_BAR}}</label></div>
+                                            <div class="col-md-9"> <input id="wp_user_disable_admin_bar" type="checkbox"   ng-checked="wp_user_disable_admin_bar == 1" ng-model="wp_user_disable_admin_bar">
+                                                {{translation.DISABLE_ADMIN_BAR_FOR_ALL_USER}} 
+                                            </div>
+                                        </div>
+                                    </div><!-- /.box-body -->
+
+                                    <div class="box-footer">                        
+                                        <input type="button" class="btn btn-primary" name="update_setting_general"  value="{{translation.UPDATE}}" ng-click="update_setting_general()">	
+
+                                    </div>
+                                </form>
+                            </div><!-- /.box-body -->
+                        </div><!-- /. box -->  
+
+
+                        <div class="box box-default box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">{{translation.TERM_AND_CONDITION}}</h3>                                
+                                <div class="box-tools">
+                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div ng-init="get_setting_general_term()" class="box-body no-padding">
+                                <form role="form">
+                                    <div class="box-body">
+                                        <div class="form-group row">
+                                            <div class="col-md-3"><label for="wp_user_tern_and_condition">{{translation.ENABLE}} {{translation.TERM_AND_CONDITION}}</label></div>
+                                            <div class="col-md-9"> <input id="wp_user_tern_and_condition" type="checkbox" ng-checked="wp_user_tern_and_condition == 1" ng-model="wp_user_tern_and_condition">
+                                                {{translation.DISPLEY_AND_REQUIRE_USER_AGREEMENT_TO_TERMS_AND_CONDITION}}
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-3"><label for="wp_user_show_term_data">{{translation.TERM_AND_CONDITION}}</label></div>
+                                            <div class="col-md-9"> 
+                                                <textarea id="wp_user_show_term_data" ng-model="wp_user_show_term_data" cols="80" rows="4">{{wp_user_show_term_data}}</textarea>
+                                            </div>
+                                            <div class="col-md-offset-3 col-md-9">
+                                                 {{translation.ENTER_TEXT_OR_A_URL_STARTING_WITH_HTTP}}
+                                            </div>
+                                        </div>
+                                    </div><!-- /.box-body -->
+
+                                    <div class="box-footer">                        
+                                        <input type="button" class="btn btn-primary" name="update_setting_general_term"  value="{{translation.UPDATE}}" ng-click="update_setting_general_term()">	
+
+                                    </div>
+                                </form>
+                            </div><!-- /.box-body -->
+                        </div><!-- /. box -->     
+
+                        <div class="box box-default box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">{{translation.APPEAREARANCE_AND_LOOK}}</h3>                                
+                                <div class="box-tools">
+                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div ng-init="get_setting_general_appearance()" class="box-body no-padding">
+                                <form role="form">
+                                    <div class="box-body">
+                                        <div class="form-group row">
+                                            <div class="col-md-3"><label for="wp_user_language">Language</label></div>
+                                            <div class="col-md-9"> 
+                                                <select id="wp_user_language" ng-model="wp_user_language">
+                                                    <option class="ng-scope ng-binding" value="English">English</option>
+                                                     <option class="ng-scope ng-binding" value="Detch">Detch</option>
+                                                    <option class="ng-scope ng-binding" value="French">French</option>                                                   
+                                                    <option class="ng-scope ng-binding" value="German">German</option>
+                                                    <option class="ng-scope ng-binding" value="Hungarian">Hungarian</option>
+                                                </select>
+                                                <i class=" fa fa-question-circle"></i> {{translation.DEFUALT_LNGUAGE}}
+                                            </div>
+
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                            <div class="col-md-3"><label for="wp_user_appearance_skin">{{translation.DEFUALT_SKIN}}</label></div>
+                                            <div class="col-md-9"> 
+                                                <select id="wp_user_appearance_skin" ng-model="wp_user_appearance_skin">
+                                                    <option class="ng-scope ng-binding" value="default">{{translation.DEFUALT}}</option>
+                                                    <option value="block"  class="ng-scope ng-binding">{{translation.BLOCK}}</option>
+                                                    <option value="horizontal"  class="ng-scope ng-binding">{{translation.HORIZONTAL}}</option> 
+                                                    <option value="float"  class="ng-scope ng-binding">{{translation.FLOAT_FIELDS}}</option>                                                    
+                                                </select>
+                                                <i class=" fa fa-question-circle"></i> {{translation.DEFUALT_SKIN}}
+                                            </div>
+
+                                        </div>                                        
+
+                                        <div class="form-group row">
+                                            <div class="col-md-3"><label for="wp_user_appearance_icon">{{translation.FIELD_ICON}}</label></div>
+                                            <div class="col-md-9"> 
+                                                <select id="wp_user_appearance_icon" ng-model="wp_user_appearance_icon">
+                                                    <option value="1"  class="ng-scope ng-binding">{{translation.YES}}</option>   
+                                                    <option class="ng-scope ng-binding" value="0">{{translation.NO}}</option>
+
+                                                </select>
+                                                <i class=" fa fa-question-circle"></i> {{translation.DISABLE}} {{translation.FIELD_ICON}}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-3"><label for="wp_user_disable_admin_bar">{{translation.DISABLE_ADMIN_BAR}}</label></div>
+                                            <div class="col-md-9"> 
+                                                <input id="wp_user_disable_admin_bar" type="checkbox"   ng-checked="wp_user_disable_admin_bar == 1" ng-model="wp_user_disable_admin_bar">
+                                                <i class=" fa fa-question-circle"></i> {{translation.HIDE_TOP_ADMIN_BAR_FROM_NON_ADMIN}}
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-3"><label for="wp_user_appearance_custom_css">{{translation.CUSTUM_CSS_STYLES}}</label></div>
+                                            <div class="col-md-9"> 
+                                                <textarea id="wp_user_appearance_custom_css" ng-model="wp_user_appearance_custom_css" cols="80" rows="4">{{wp_user_appearance_custom_css}}</textarea>
+                                            </div>
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <i class=" fa fa-question-circle"></i> {{translation.CUSTUM_CSS_STYLES_MSG}}
+                                            </div>
+                                        </div>
+
+                                    </div><!-- /.box-body -->
+
+                                    <div class="box-footer">                        
+                                        <input type="button" class="btn btn-primary" name="update_setting_general_appearance"  value="{{translation.UPDATE}}" ng-click="update_setting_general_appearance()">	
+
+                                    </div>
+                                </form>
+                            </div><!-- /.box-body -->
+                        </div><!-- /. box -->     
+
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div id="tab_2" class="tab-pane">
+                        <div class="box box-default box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">{{translation.PAGE}}</h3>                                
+                                <div class="box-tools">
+                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div ng-init="get_setting_page()" class="box-body no-padding">
+                                <form role="form">
+                                    <div class="box-body">                   
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label>WP User {{translation.PAGE}}</label></div>
+                                            <div class="col-md-3">
+                                                <a title="{{wp_user_page.title}}" ng-href="{{wp_user_page.permalink}}" target="_blank"><button type="button" class="btn btn-block btn-default btn-flat">{{translation.VIEW}} {{translation.PAGE}}</button></a>
+                                            </div>
+                                            <div class="col-md-6">     
+                                                <span ng-bind="wp_user_page.permalink"></span>
+                                            </div>
+                                        </div>
+
+                                         <div class="form-group row row">
+                                            <div class="col-md-3"><label>WP User Members {{translation.PAGE}}</label></div>
+                                            <div class="col-md-3">
+                                                <a title="{{wp_user_member_page.title}}" ng-href="{{wp_user_member_page.permalink}}" target="_blank"><button type="button" class="btn btn-block btn-default btn-flat">{{translation.VIEW}} {{translation.PAGE}}</button></a>
+                                            </div>
+                                            <div class="col-md-6">                     
+                                                <span ng-bind="wp_user_member_page.permalink"></span>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div><!-- /.box-body -->
+
+                                    <div class="box-footer"> 
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label>{{translation.PAGE}} {{translation.TITLE}}</label></div>
+                                            <div class="col-md-3">               
+                                                <input type="text" ng-model="wp_user_page_title" value="{{wp_user_page_title}}">
+                                            </div>
+                                        </div>   
+
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label>Member {{translation.PAGE}} {{translation.TITLE}}</label></div>
+                                            <div class="col-md-3">
+                                                 <input type="text" ng-model="wp_user_member_page_title" value="{{wp_user_member_page_title}}"> 
+                                            </div>
+                                        </div>                                        
+                                        <input type="button" class="btn btn-primary" name="update_setting_page"  value="Rebuild WP User Page" ng-click="update_setting_page()">	<br>
+                                        {{translation.SHORTCODE_HELP_MSG}}
+                                        <br>
+                                        Use [wp_user_member] shortcode for display members/users list.
+
+                                    </div>
+                                </form>
+                            </div><!-- /.box-body -->
+                        </div><!-- /. box -->   
+                    </div>
+
+                    <!-- /.tab-pane -->
+                    <div id="tab_security" class="tab-pane">
+                        <div class="box box-default box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">{{translation.LIMIT_LOGIN_ATTEMPTS}}</h3>                                
+                                <div class="box-tools">
+                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div ng-init="get_setting_security_login()" class="box-body no-padding">
+                                <form role="form">
+                                    <div class="box-body"> 
+                                        <div class="alert alert-info alert-dismissible">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            <h4><i class="icon fa fa-info"></i> {{translation.LIMIT_LOGIN_ATTEMPTS}}!</h4>
+                                            {{translation.LIMIT_LOGIN_ATTEMPTS_MSG}}
+                                        </div>
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label for="wp_user_login_limit_enable">{{translation.ENABLE}} {{translation.LIMIT_LOGIN_ATTEMPTS}} {{translation.SETTING}}</label></div>
+                                            <div class="col-md-9"> <input id="wp_user_login_limit_enable" type="checkbox"   ng-checked="wp_user_login_limit_enable == 1" ng-model="wp_user_login_limit_enable">
+                                                {{translation.LIMIT_LOGIN_ATTEMPTS_SETTING_MSG}}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label for="wp_user_login_limit">{{translation.LIMIT_LOGIN_ATTEMPTS}}</label></div>
+                                            <div class="col-md-9"> 
+                                                <input type="text" ng-model="wp_user_login_limit" value="{{wp_user_login_limit}}">                                            
+                                                {{translation.ALLOWS_USER_LOGIN_RETRIVES}} {{wp_user_login_limit}} {{translation.ATTEMPTS}}. 
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label for="wp_user_login_limit_admin_notify">{{translation.NOTIFY_ON}} {{translation.LOCKOUTS}} ({{translation.EMAIL_TO_ADMIN_AFTER}})</label></div>
+                                            <div class="col-md-9">
+                                                <input id="wp_user_login_limit_admin_notify" type="checkbox"   ng-checked="wp_user_login_limit_admin_notify == 1" ng-model="wp_user_login_limit_admin_notify">                                                                                         
+                                                {{wp_user_login_limit}} {{translation.LOCKOUTS}} 
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-3"><label for="wp_user_login_limit_time">{{translation.LOCKOUTS}} {{translation.TIME}}</label></div>
+                                            <div class="col-md-9">
+                                                <input type="text" ng-model="wp_user_login_limit_time" value="{{wp_user_login_limit_time}}">                          
+                                                {{translation.LOCKOUTS_MINUTES_ACCESS_WILL_BLOCKED}} {{wp_user_login_limit_time}} {{translation.MINUTES}}.
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-3"><label for="wp_user_truncate_login_entries">Truncate Login Entries</label></div>
+                                            <div class="col-md-9">
+                                                <input type="text" ng-model="wp_user_truncate_login_entries" value="{{wp_user_truncate_login_entries}}"> Days : Enter number of days for keep login log.
+                                                <p>Leave empty or enter 0 for keep all logs.</p>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.box-body -->
+
+                                    <div class="box-footer">                        
+                                        <input type="button" class="btn btn-primary" name="update_setting_security_login"  value="{{translation.UPDATE}}" ng-click="update_setting_security_login()">	
+
+                                    </div>
+                                </form>
+                            </div><!-- /.box-body -->
+
+                        </div><!-- /. box -->   
+
+                        <div class="box box-default box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">{{translation.PASSWORD}} ({{translation.FORM_VALIDATION_AND_SECURITY}})</h3>                                
+                                <div class="box-tools">
+                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div ng-init="get_setting_security_password()" class="box-body no-padding">
+                                <form role="form">
+                                    <div class="box-body">                                        
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label for="wp_user_login_limit_password_enable">{{translation.ENABLE_PASSWORD_REGULAR_EXPRESSION}}</label></div>
+                                            <div class="col-md-9"> <input id="wp_user_login_limit_password_enable" type="checkbox"   ng-checked="wp_user_login_limit_password_enable == 1" ng-model="wp_user_login_limit_password_enable">
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label for="wp_user_login_password_valid_message">{{translation.PASSWORD}} {{translation.VALIDATION_MESSAGE}}</label></div>
+                                            <div class="col-md-9"> 
+                                                <input type="text" id="wp_user_login_password_valid_message" class="form-control" ng-model="wp_user_login_password_valid_message" value="{{wp_user_login_password_valid_message}}">                                            
+                                                <p>{{translation.PASSWORD}} {{translation.VALIDATION_MESSAGE}} {{translation.FOR_FRONT_END_USER}} .</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label for="wp_user_login_limit_password">{{translation.PASSWORD}} {{translation.REGULAR_EXPRESSION}}</label></div>
+                                            <div class="col-md-9"> 
+                                                <input type="text" id="wp_user_login_limit_password" class="form-control" ng-model="wp_user_login_limit_password" value="{{wp_user_login_limit_password}}">                                            
+                                                <p>{{translation.REGULAR_EXPRESSION_MSG}}.</p>
+                                            </div>
+                                        </div>
+                                        <div class="alert alert-info alert-dismissible">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            <h4><i class="icon fa fa-info"></i> {{translation.EXAMPLE}} ({{translation.DEFUALT}})</h4>
+
+                                            $\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$ <br>
+                                            $ = {{translation.BEGIN_OF_STRING}} <br>
+                                            \S* = {{translation.ANY_SET_OF_CHARACTERS}}<br>
+                                            (?=\S{8,}) = {{translation.OF_AT_LEAST_LENGHT_8}}<br>
+                                            (?=\S*[a-z]) = {{translation.CONTAINIG_AT_LEAST_ONE_LOWER_LETTER}}<br>
+                                            (?=\S*[A-Z]) = {{translation.AND_AT_LEAST_ONE_UPPERCASE_LETTER}}<br>
+                                            (?=\S*[\d]) = {{translation.AND_AT_LEAST_ONE_NUMBER}}<br>
+                                            (?=\S*[\W]) = {{translation.AND_AT_LEAST_A_SPECIAL_CHARACTER}}<br>
+                                            $ = {{translation.END_OF_THE_STRING}}
+
+                                        </div>
+                                    </div><!-- /.box-body -->
+
+                                    <div class="box-footer">                        
+                                        <input type="button" class="btn btn-primary" name="update_setting_security_password"  value="{{translation.UPDATE}}" ng-click="update_setting_security_password()">	
+
+                                    </div>
+                                </form>
+                            </div><!-- /.box-body -->
+
+                        </div><!-- /. box -->   
+                        <div class="box box-default box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">{{translation.RECAPTCHA}}</h3>                                
+                                <div class="box-tools">
+                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div ng-init="get_setting_security_reCAPTCHA()" class="box-body no-padding">
+                                <form role="form">
+                                    <div class="box-body">                                        
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label for="wp_user_security_reCaptcha_enable">{{translation.ENABLE}} {{translation.RECAPTCHA}}</label></div>
+                                            <div class="col-md-9"> <input id="wp_user_security_reCaptcha_enable" type="checkbox"   ng-checked="wp_user_security_reCaptcha_enable == 1" ng-model="wp_user_security_reCaptcha_enable">
+                                                {{translation.RECAPTCHA_MSG}}.
+
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label for="wp_user_security_reCaptcha_secretkey">{{translation.SECRET_KEY}}</label></div>
+                                            <div class="col-md-9"> 
+                                                <input type="text" id="wp_user_security_reCaptcha_secretkey" class="form-control" ng-model="wp_user_security_reCaptcha_secretkey" value="{{wp_user_security_reCaptcha_secretkey}}">                                                                                            
+                                                <p>1.{{translation.RECAPTCHA_HELP_MSG_1}} <a href="https://www.google.com/recaptcha/admin#createsite" target="_blank">https://www.google.com/recaptcha/admin#createsite.</a></p>
+
+                                                <p>2.{{translation.RECAPTCHA_HELP_MSG_2}} <a href="https://developers.google.com/recaptcha/intro" target="_blank">https://developers.google.com/recaptcha/intro.</a></p>
+                                            </div>
+                                        </div>
+
+                                    </div><!-- /.box-body -->
+
+                                   <div class="box-footer">                        
+                                        <input type="button" class="btn btn-primary" name="update_setting_security_reCAPTCHA"  value="{{translation.UPDATE}}" ng-click="update_setting_security_reCAPTCHA()">	
+
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>    
+                    </div>
+
+                    <!-- /.tab-pane -->
+                    <div id="tab_3" class="tab-pane">
+                        <div class="alert alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-info"></i> {{translation.VARIABLE}}!</h4>
+                            {{translation.VARIABLE_MSG}}<br>
+                            {WPUSER_ADMIN_EMAIL} {{translation.DISPLEAY_WPUSER_ADMIN_EMAIL}}<br>
+                            {WPUSER_BLOGNAME} {{translation.DISPLEAY_WPUSER_BLOGNAME}}<br>
+                            {WPUSER_BLOG_URL} {{translation.DISPLEAY_WPUSER_BLOG_URL}}<br>
+                            {WPUSER_BLOG_ADMIN} {{translation.DISPLEAY_WPUSER_BLOG_ADMIN}}<br>
+                            {WPUSER_LOGIN_URL} {{translation.DISPLEAY_WPUSER_LOGIN_URL}}<br>
+                            {WPUSER_USERNAME} {{translation.DISPLEAY_WPUSER_USERNAME}}<br>
+                            {WPUSER_FIRST_NAME} {{translation.DISPLEAY_WPUSER_FIRST_NAME}}<br>
+                            {WPUSER_LAST_NAME} {{translation.DISPLEAY_WPUSER_LAST_NAME}}<br>
+                            {WPUSER_NAME} {{translation.DISPLEAY_WPUSER_NAME}}<br>
+                            {WPUSER_EMAIL} {{translation.DISPLEAY_WPUSER_EMAIL}}<br>
+                            {WPUSER_NEW_PASSWORD} {{translation.DISPLEAY_WPUSER_NEW_PASSWORD}}
+                        </div>
+                        <div ng-init="get_setting_email()" class="box-body no-padding">
+                            <form role="form">
+
+                                <div class="box box-default box-solid">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">{{translation.SEND_MAIL_SETTING}}</h3>                                
+                                        <div class="box-tools">
+                                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="box-body">
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label for="wp_user_email_name">{{translation.THE_NAME_THAT_APPEARS_ON_MAIL_SEND}} WP USER</label></div>
+                                            <div class="col-md-9"> 
+                                                <input type="text" id="wp_user_email_name" class="form-control" ng-model="wp_user_email_name" value="{{wp_user_email_name}}">                                                                                            
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label for="wp_user_email_id">{{translation.THE_ADDRESS_THAT_APPEARS_ON_MAIL_SEND}}  WP User</label></div>
+                                            <div class="col-md-9"> 
+                                                <input type="text" id="wp_user_email_id" class="form-control" ng-model="wp_user_email_id" value="{{wp_user_email_id}}">                                                                                            
+                                            </div>
+                                        </div>
+                                    </div><!-- /.box-body -->
+                                </div><!-- /. box --> 
+
+                                <div class="box box-default box-solid">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">{{translation.NEW_REGISTRATION}} </h3>                                
+                                        <div class="box-tools">
+                                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="box-body">
+                                        <div class="form-group row row">
+                                            <div class="col-md-12">{{translation.ADMIN_NOTIFICATION}}</div>
+                                            <div class="col-md-3"><label for="wp_user_email_admin_register_enable">{{translation.SEND_AN_EMAIL_TO_ADMIN_WHEN_USER_REGISTER}}</label></div>
+                                            <div class="col-md-9"> 
+                                                <input id="wp_user_email_admin_register_enable" type="checkbox"   ng-checked="wp_user_email_admin_register_enable == 1" ng-model="wp_user_email_admin_register_enable">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label for="wp_user_email_admin_register_subject">{{translation.SUBJECT}}</label></div>
+                                            <div class="col-md-9"> 
+                                                <input type="text" id="wp_user_email_admin_register_subject" class="form-control" ng-model="wp_user_email_admin_register_subject" value="{{wp_user_email_admin_register_subject}}">                                
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label for="wp_user_email_admin_register_content">{{translation.EMAIL_CONTENT}}</label></div>
+                                            <div class="col-md-9"> 
+                                                <textarea id="wp_user_email_admin_register_content" ng-model="wp_user_email_admin_register_content" cols="80" rows="4">{{wp_user_email_admin_register_content}}</textarea>                                                                             
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row row">
+                                            <div class="col-md-12">{{translation.USER_NOTIFICATION}}</div>
+                                            <div class="col-md-3"><label for="wp_user_email_user_register_enable">{{translation.SEND_AN_EMAIL_TO_USER_WHEN_USER_IS_REGISTER}}</label></div>
+                                            <div class="col-md-9"> 
+                                                <input id="wp_user_email_user_register_enable" type="checkbox"   ng-checked="wp_user_email_user_register_enable == 1" ng-model="wp_user_email_user_register_enable">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label for="wp_user_email_user_register_subject">{{translation.SUBJECT}}</label></div>
+                                            <div class="col-md-9"> 
+                                                <input type="text" id="wp_user_email_user_register_subject" class="form-control" ng-model="wp_user_email_user_register_subject" value="{{wp_user_email_user_register_subject}}">                                
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label for="wp_user_email_user_register_content">{{translation.EMAIL_CONTENT}}</label></div>
+                                            <div class="col-md-9"> 
+                                                <textarea id="wp_user_email_user_register_content" ng-model="wp_user_email_user_register_content" cols="80" rows="4">{{wp_user_email_user_register_content}}</textarea>                                                                             
+                                            </div>
+                                        </div>
+
+                                    </div><!-- /.box-body -->
+                                </div><!-- /. box --> 
+                                
+                                <div class="box box-default box-solid">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">{{translation.FORGOT}} {{translation.PASSWORD}} </h3>                                
+                                        <div class="box-tools">
+                                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="box-body">                                        
+
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label for="wp_user_email_user_forgot_subject">{{translation.SUBJECT}}</label></div>
+                                            <div class="col-md-9"> 
+                                                <input type="text" id="wp_user_email_user_forgot_subject" class="form-control" ng-model="wp_user_email_user_forgot_subject" value="{{wp_user_email_user_forgot_subject}}">                                
+                                            </div>
+                                        </div>                                      
+
+                                        <div class="form-group row row">
+                                            <div class="col-md-3"><label for="wp_user_email_user_forgot_content">{{translation.EMAIL_CONTENT}}</label></div>
+                                            <div class="col-md-9"> 
+                                                <textarea id="wp_user_email_user_forgot_content" ng-model="wp_user_email_user_forgot_content" cols="80" rows="4">{{wp_user_email_user_forgot_content}}</textarea>                                                                             
+                                            </div>
+                                        </div>
+
+                                    </div><!-- /.box-body -->
+                                </div><!-- /. box --> 
+
+                                <input type="button" class="btn btn-primary" name="update_setting_email"  value="{{translation.UPDATE}}" ng-click="update_setting_email()">	
+
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+
+                    <div id="tab_login_log" class="tab-pane">
+                    <p>Track records of user login with set of multiple information like ip,time,user name,browser infrormation etc.</p>
+                   <div class="row">
+                        <div class="col-md-2">PageSize:
+                            <select ng-model="entryLimit" class="form-control">
+                                <option>5</option>
+                                <option>10</option>
+                                <option>20</option>
+                                <option>50</option>
+                                <option>100</option>
+                            </select>
+                        </div>
+                <div class="col-md-3">Filter:
+                    <input type="text" ng-model="search" ng-change="filter()" placeholder="Filter" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <h5>Filtered {{ filtered.length }} of {{ totalItems}} total Logs</h5>
+                </div>
+             </div>
+    <br/>
+     <div class="row">
+        <div class="col-md-12" ng-show="filteredItems > 0">
+            <table class="table table-striped table-bordered">
+            <thead>
+            <th>#</th>
+            <th>User&nbsp;<a ng-click="sort_by('user');"></a></th>
+            <th>User ID&nbsp;<a ng-click="sort_by('user_id');"></a></th>   
+            <th>User Email&nbsp;<a ng-click="sort_by('user_email');"></a></th>
+            <th>Status&nbsp;<a ng-click="sort_by('status');"></a></th>
+            <th>Description</th>            
+            <th>IP&nbsp;<a ng-click="sort_by('ip');"></a></th>
+            <th>Time&nbsp;<a ng-click="sort_by('created_date');"></a></th>   
+            </thead>
+            <tbody ng-init="get_login_log()">
+                <tr ng-repeat="product in filtered = (pagedItems | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+                   <td>{{$index+1}}</td>
+                    <td>{{product.user}}</td>
+                    <td>{{product.user_id}}</td>     
+                    <td>{{product.user_email}}</td> 
+                    <td>{{product.status}}</td> 
+                    <td>
+                    <span ng-if="'Successfull'==product.status" style="color:green" class="glyphicon glyphicon-info-sign"> </span>
+                    <span ng-if="'Failed'==product.status" style="color:red" class="glyphicon glyphicon-info-sign"> </span>
+                     {{product.message}}<br>
+                    {{product.user_agent}}</td>                   
+                    <td>{{product.ip}}</td>                                       
+                    <td>{{product.created_date}}</td>                     
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        <div class="col-md-12" ng-show="filteredItems == 0">
+            <div class="col-md-12">
+                <h4>No Login Logs found</h4>
+            </div>
+        </div>
+        <div class="col-md-12" ng-show="filteredItems > 0">    
+            <div pagination="" page="currentPage" on-select-page="setPage(page)" boundary-links="true" total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" previous-text="&laquo;" next-text="&raquo;"></div>
+        </div>
+    </div>
+                    </div>
+
+                    <div id="import_export" class="tab-pane">
+                        <div class="box box-default box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Export User to CSV</h3>                                
+                                <div class="box-tools">
+                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div ng-init="get_setting_page()" class="box-body">
+                            <div class="row">
+                            <div class="form-group"><br>
+                                <div class="col-md-3">
+                                    <label for="wpuser_export_users_num">Number of Users to export </label>
+                                </div>
+                                <div class="col-md-9"> 
+                                    <input type="text" name="wpuser_export_users_num" id="wpuser_export_users_num" class="regular-text">
+                                </div>
+                            </div>
+
+                            <div class="form-group"><hr>
+                                <div class="col-md-3">
+                                    <label for="wpuser_export_users_include_fields">Only Include these fields in export </label>
+                                </div>
+                                <div class="col-md-9"> 
+                                    <input type="text" name="wpuser_export_users_include_fields" id="wpuser_export_users_include_fields" class="regular-text">
+                                    <p>A comma seperated list of fields to include only in the export. e.g.  ID,user_login,user_nicename,display_name,user_email</p>
+                                </div>
+                            </div>                            
+                            </div>
+
+                                
+                            </div><!-- /.box-body -->
+                            <div class="box-footer">
+                             <span class="btn btn-primary download_csv"><i class="fa fa-download"></i> Export</span>
+                            </div>
+                        </div><!-- /. box -->   
+                    </div>
+
+                    <div id="tab_cust" class="tab-pane">
+                    We do provide paid customization to our product WP User for your custom need.
+                    You can create ticket for your requirement on our <a href="http://www.wpseeds.com/support/" target="_blank">support page</a> or mail us on support@wpseeds.com .We will evaluate the requirement with our team and tell you the cost and deadline for your customization.
+                    </div>
+
+                    <!-- /.tab-pane -->
+                    <div id="tab_help" class="tab-pane">
+
+                        <div class="box box-default box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">{{translation.SHORTCODE}}</h3>                                
+                                <div class="box-tools">
+                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="box-body no-padding">                               
+                                <div class="box-body">                   
+                                    [wp_user] {{translation.SHORTCODE_FOR_LOGIN_PAGE}}.<br>
+                                    [wp_user popup=1] {{translation.SHORTCODE_FOR_POPUP}}.<br>
+                                    [wp_user popup='1' active='register'] shortcode for popuup model login, registration, forgot password form. default active registration form<br>
+                                    [wp_user active='register'] for display default active registration form.(sign up page)<br>
+                                    [wp_user active='forgot'] shortcode for display login, registration, forgot password form. default active forgot form.<br>
+
+                                </div><!-- /.box-body -->                                
+                            </div><!-- /.box-body -->
+                        </div><!-- /. box -->   
+
+                        <div class="box box-default box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">{{translation.DISABLE_SIGN_UP_FORM}}</h3>                                
+                                <div class="box-tools">
+                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="box-body no-padding">                               
+                                <div class="box-body">                   
+                                    {{translation.GO_TO_DASHBOARD_WP_USER_GENERAL}}<br>
+                                    1) {{translation.CLICK_ON}} '{{translation.DISABLE_SIGN_UP_FORM}}' {{translation.CHECKBOX}}. <br>
+                                    2) {{translation.CLICK_ON}} '{{translation.UPDATE}}' {{translation.FOR_SAVE_SETTING}}<br>
+                                </div><!-- /.box-body -->                                
+                            </div><!-- /.box-body -->
+                        </div><!-- /. box -->   
+
+                        <div class="box box-default box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Paid Customization</h3>                                
+                                <div class="box-tools">
+                                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="box-body no-padding">                               
+                                <div class="box-body">      
+                                <p>We do provide paid customization to our free product WP User as Add-On for your custom need. You can still update the original plugin in future even you have custom code.
+                                </p>             
+                                <p>You will get free 1 year Priority Support for our core product if you pay any amount to customization.</p>
+                                    <p>{{translation.IF_YOU_WANT_MORE_FEATURE_THEN_DROP_MAIL}} :walke.prashant28@gmail.com or raise ticket on <a href="http://www.wpseeds.com/support/" target="_blank">Support</a></p>
+                                </div>
+                                <div class="box-footer">  
+                                    <div class="col-md-3">
+                                        <a target='_blank' href="http://www.wpseeds.com/support/" class="btn btn-block btn-sm btn-primary btn-flat"><i class="fa fa-support"></i> {{translation.SUPPORT}}</a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a target='_blank' href="http://www.wpseeds.com/wp-user" class="btn btn-block btn-sm btn-primary btn-flat"><i class="fa fa-sticky-note-o"></i> {{translation.DOCUMENTATION}}</a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a target='_blank' href="www.wpseeds.com/product/profile-pro" class="btn btn-block btn-sm btn-success btn-flat"><i class="fa fa-dollar"></i> {{translation.PRO_FEATURES}}</a>
+                                    </div>
+                                </div><!-- /.box-body -->                                
+                            </div><!-- /.box-body -->
+                        </div><!-- /. box --> 
+
+                    </div>
+
+
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+        </div><!-- /.row -->
+    </div>
+</div><!-- /.aj -->
+<script type="text/javascript">             
+      jQuery(document).on("click", ".download_csv", function() {       
+        var fileName = 'users_list';       
+        jQuery.ajax({
+            data: {
+          users_num : $('#wpuser_export_users_num').val(),
+          include_fields : $('#wpuser_export_users_include_fields').val()
+       },
+        type: "GET", 
+      url: wpuser_link.wpuser_ajax_url+'?action=wpuser_getUserList',         
+      success: function(data) {
+         JSONToCSVConvertor(data, fileName,true);       
+      }
+   });      
+    }); 
+           </script>       

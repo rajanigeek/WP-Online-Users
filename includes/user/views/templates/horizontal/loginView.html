@@ -1,0 +1,55 @@
+<div class="box box-info" ng-controller="loginController" ng-init="get_setting_login()">   
+            <div class="box-header with-border">
+              <h3 class="box-title">{{translation.SIGN_IN}}</h3>
+               <a href="#forgotController" class="pull-right">{{translation.FORGOT_PASSWORD}}</a>
+            </div>
+    <form role="form">
+<div class="login-box-body" >
+            <div>               
+     <div class="alert alert-{{login_status}} alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>{{login_message}}</div>
+    
+        <div class="row form-group has-feedback">
+            <label class="col-xs-3" for="wp_user_email_name">{{translation.USERNAME_OR_EMAIL}}</label>
+            <div class="col-xs-9">
+            <input type="text" id="wp_user_email_name" placeholder="{{translation.USERNAME_OR_EMAIL}}" required class="form-control" ng-model="wp_user_email_name" value="{{wp_user_email_name}}">                              
+            <span ng-hide="wp_user_appearance_icon" class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+        </div>
+        <div class="row form-group has-feedback">
+            <label class="col-xs-3" for="wp_user_password">{{translation.PASSWORD}}</label>
+            <div class="col-xs-9">
+            <input type="password" id="wp_user_password" class="form-control" required placeholder="{{translation.PASSWORD}}" ng-model="wp_user_password" value="{{wp_user_password}}">
+            <span ng-hide="wp_user_appearance_icon" class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <!--<div class="checkbox icheck">
+                    <label class="">
+                        <div class="icheckbox_square-blue" aria-checked="false" aria-disabled="false" style="position: relative;">
+                            <input type="checkbox" ng-model="wp_user_remember" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div> Remember Me
+                    </label>
+                </div>-->
+            </div>
+            <!-- /.col -->
+            
+           
+            <!-- /.col -->
+        </div>
+   
+
+    <!--<div class="social-auth-links text-center">
+        <p>- OR -</p>
+        <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
+            Facebook</a>        
+    </div>-->
+    <!-- /.social-auth-links -->
+</div>
+</div>
+    <div class="box-footer">
+        <input type="submit" class="btn btn-primary" name="wpuser_login"  value="{{translation.SIGN_IN}}" ng-click="wpuser_login()">	
+               
+                <a ng-hide="wp_user_disable_signup" href="#registerController" class="btn btn-default pull-right">{{translation.SIGN_UP}}</a>
+    </div>
+         </form>
+</div>

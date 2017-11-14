@@ -1,0 +1,26 @@
+
+<div id="forgot" class="box box-info" ng-controller="forgotController">
+            <div class="box-header with-border">
+              <h3 class="box-title">{{translation.FORGOT_PASSWORD}}</h3>
+               <a href="#loginController" class="pull-right">{{translation.SIGN_IN}}</a>
+            </div>
+        <form role="form">
+    <div class="login-box-body" >
+    <div class="alert alert-{{forgot_status}} alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>{{forgot_message}}</div>
+
+        <div class="row form-group has-feedback">
+            <label class="col-xs-3" for="wp_user_email">{{translation.EMAIL}}</label>
+            <div class="col-xs-9">
+            <input type="text" id="wp_user_email" placeholder="{{translation.EMAIL}}" required class="form-control" ng-model="wp_user_email" value="{{wp_user_email}}">                              
+            <span ng-hide="wp_user_appearance_icon" class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+        </div>
+        
+    
+   </div>
+              <div class="box-footer">
+                  <input type="submit" class="btn btn-primary" name="forgot_password"  value="{{translation.FORGOT}}" ng-click="forgot_password()">	
+
+              </div>
+            </form>
+</div>
